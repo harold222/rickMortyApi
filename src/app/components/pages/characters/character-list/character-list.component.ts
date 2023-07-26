@@ -1,10 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { filter, take } from 'rxjs';
 import { Character } from '../../../../shared/interfaces/character.interface';
 import { TrackHttpError } from '../../../../shared/models/TrackHttpError';
 import { CharacterService } from '../../../../shared/services/character.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-list',

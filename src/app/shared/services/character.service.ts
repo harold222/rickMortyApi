@@ -23,19 +23,23 @@ export class CharacterService {
       );
   }
 
-  getDetails(id: number) {
-    return this.http.get<Character>(`${environment.baseUrlAPI}/${id}`)
+  getDetails(id: number): Observable<Character | TrackHttpError> {
+    return this.http.get<Character>(
+      `${environment.baseUrlAPI}/${id}`
+      )
       .pipe(
         catchError(
           (err) => this.handleHttpError(err)
-        ));
+        )
+      );
   }
 
   private handleHttpError(error: HttpErrorResponse): Observable<TrackHttpError>{
-    let dataError = new TrackHttpError();
-    dataError.errorNumber = error.status;
-    dataError.message = error.statusText;
-    dataError.friendlyMessage = 'An error occured retrienving data.';
+    const dataError: TrackHttpError = {
+      errorNumber: error.status,
+      message: error.statusText,
+      friendlyMessage: 'Ha ocurrido un error'
+    }
     return throwError(dataError);
   }
 }

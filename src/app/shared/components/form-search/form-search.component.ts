@@ -11,9 +11,8 @@ export class FormSearchComponent {
   constructor(private router: Router) {}
 
   public onSearch(event: any) {
-    console.log('es: ', event.target.value)
     if (event.target.value) {
-      this.router.navigate([`/character-list`], {
+      this.router.navigate([`/lista-personajes`], {
         queryParams: {
           q: event.target.value
         }

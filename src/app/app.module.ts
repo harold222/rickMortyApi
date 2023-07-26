@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http'
 
@@ -9,6 +7,7 @@ import { AppComponent } from './app.component';
 import { FormSearchComponent } from './shared/components/form-search/form-search.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule,
     HttpClientModule,
     CommonModule
   ],
