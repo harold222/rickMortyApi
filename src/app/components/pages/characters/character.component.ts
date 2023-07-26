@@ -6,9 +6,6 @@ import { Character } from '@app/shared/interfaces/character.interface';
     template:`
     <div class="card">
       <div class="image">
-        <div *ngIf="character instanceof Character">
-
-        </div>
           <a [routerLink]="['/detalle-personaje', character?.id]">
             <img
               [src]="character?.image"
