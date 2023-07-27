@@ -12,3 +12,11 @@ export const selectCharacters = createSelector(
 export const selectErrorHttp = createSelector(
     selectHomeState,
     (homeState: IHomeState) => homeState.error);
+
+export const selectTotalPages = createSelector(
+    selectHomeState,
+    (homeState: IHomeState) => homeState.totalPages);
+
+export const selectLoading = createSelector(
+    selectHomeState,
+    (homeState: IHomeState) => homeState.loading);

@@ -1,10 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Character } from '../interfaces/character.interface';
+import { Character } from '../interfaces/characters/character.interface';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { TrackHttpError } from '../models/TrackHttpError';
+import { SearchCharacter } from '../interfaces/characters/SearchCharacter.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,9 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  searchCharacters(query = '', page = 200): Observable<Character[] | TrackHttpError> {
+  searchCharacters(query = '', page = 200): Observable<SearchCharacter> {
     const filter = `${environment.baseUrlAPI}/?name=${query}&page=${page}`;
-    return this.http.get<Character[]>(filter)
-      .pipe(
-        catchError(
-          (err) => this.handleHttpError(err)
-        )
-      );
+    return this.http.get<SearchCharacter>(filter);
   }
 
   getDetails(id: number): Observable<Character | TrackHttpError> {

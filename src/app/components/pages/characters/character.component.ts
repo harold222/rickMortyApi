@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Character } from '@app/shared/interfaces/character.interface';
+import { Character } from '@app/shared/interfaces/characters/character.interface';
 
 @Component({
     selector:'app-character',

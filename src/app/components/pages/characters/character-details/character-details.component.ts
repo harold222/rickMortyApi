@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Character } from '@app/shared/interfaces/character.interface';
+import { Character } from '@app/shared/interfaces/characters/character.interface';
 import { TrackHttpError } from '@app/shared/models/TrackHttpError';
 import { CharacterService } from '@app/shared/services/character.service';
 import { Observable, first, take } from 'rxjs';

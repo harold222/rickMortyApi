@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
-import { CharacterListComponent } from './character-list/character-list.component';
+import { CharacterListComponent } from './character-list/component/character-list.component';
 import { RouterModule } from '@angular/router';
 import { CharacterComponent } from './character.component';
+import { CharacterListContainerComponent } from './character-list/container/character-list-container.component';
 
 @NgModule({
   declarations: [
     CharacterDetailsComponent,
     CharacterListComponent,
+    CharacterListContainerComponent,
     CharacterComponent
   ],
   imports: [
@@ -17,7 +19,8 @@ import { CharacterComponent } from './character.component';
   ],
   exports: [
     CharacterDetailsComponent,
-    CharacterListComponent
+    CharacterListComponent,
+    CharacterListContainerComponent
   ]
 })
 export class CharactersModule { }

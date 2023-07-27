@@ -2,10 +2,11 @@
 import { Store } from '@ngrx/store';
 import { IHomeState } from "../store";
 import { Observable } from "rxjs";
-import { Character } from "@app/shared/interfaces/character.interface";
+import { Character } from "@app/shared/interfaces/characters/character.interface";
 import * as selectors from '../store/home.selector';
 import { TrackHttpError } from "@app/shared/models/TrackHttpError";
-import { getCharacters } from '../store/home.action';
+import { getCharacters, setPages, setLoading } from '../store/home.action';
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable({
 	providedIn: 'root',
@@ -14,7 +15,14 @@ export class HomeStoreService {
 
     constructor(private store: Store<IHomeState>) { }
 
-    public getHome(query: string, page: number = 200): void {
+    public handleHttpError = (error: HttpErrorResponse): TrackHttpError =>
+        ({
+            errorNumber: error.status,
+            message: error.statusText,
+            friendlyMessage: 'Ha ocurrido un error'
+        })
+
+    public searchCharacters(query: string, page: number = 200): void {
 		this.store.dispatch(getCharacters({ page, query }));
 	}
 
@@ -22,4 +30,15 @@ export class HomeStoreService {
 
     public selectError = (): Observable<TrackHttpError> => this.store.select(selectors.selectErrorHttp);
 
+    public setTotalPages(pages: number) {
+        this.store.dispatch(setPages({ pages }));
+    }
+
+    public selectTotalPages = (): Observable<number> => this.store.select(selectors.selectTotalPages);
+
+    public selectLoading = (): Observable<boolean> => this.store.select(selectors.selectLoading);
+
+    public setLoading(loading: boolean) {
+        this.store.dispatch(setLoading({ loading }));
+    }
 }

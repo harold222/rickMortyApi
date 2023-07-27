@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CharacterListComponent } from './character-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { CharacterListContainerComponent } from './container/character-list-container.component';
 
 const routes: Routes = [
   { 
     path: '',
-    component: CharacterListComponent
+    component: CharacterListContainerComponent
   }
 ];
 

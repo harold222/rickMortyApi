@@ -19,7 +19,7 @@ import { HomeEffects } from './components/pages/home/store/home.effect';
   declarations: [
     AppComponent,
     FormSearchComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
