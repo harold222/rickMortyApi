@@ -4,6 +4,7 @@ import * as actions from './place.action';
 import { TrackHttpError } from "@app/shared/models/TrackHttpError";
 
 export const initialPlaceState: IPlaceState = {
+    places: [],
     error: {
         errorNumber: 0,
         friendlyMessage: '',
@@ -15,6 +16,11 @@ export const initialPlaceState: IPlaceState = {
 
 export const shared = createReducer(
     initialPlaceState,
+    on(actions.setPlaces, (state: IPlaceState, action: { places: any[] }) => {
+        const newState: IPlaceState = { ...state};
+        newState.places = action.places;
+        return newState;
+    }),
     on(actions.setHttpError, (state: IPlaceState, action: { error: TrackHttpError }) => {
         const newState: IPlaceState = { ...state};
         newState.error = action.error;

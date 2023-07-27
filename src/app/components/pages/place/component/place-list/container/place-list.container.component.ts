@@ -1,8 +1,8 @@
 ﻿import { Component } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { Character } from "@app/shared/interfaces/characters/character.interface";
 import { Observable, Subject, filter, take, takeUntil } from 'rxjs';
 import { PlaceStoreService } from "../../../service/place.store.service";
+import { PlaceInfoInterface } from "@app/shared/interfaces/places/PlaceInfo.interface";
 
 @Component({
     selector: 'app-place-list-container',
@@ -12,7 +12,7 @@ export class PlaceListContainerComponent {
 
     public pageNum = 1;
     private query: string = "";
-    // public characters$: Observable<Character[]> = new Observable<Character[]>();
+    public places$: Observable<PlaceInfoInterface[]> = new Observable<PlaceInfoInterface[]>();
     public totalPages$: Observable<number> = new Observable<number>();
     private unsubscribe$ = new Subject<void>();
 
@@ -57,11 +57,11 @@ export class PlaceListContainerComponent {
       }
 
     private searchData(): void {
-        // this.placeStoreService.searchCharacters(this.query, this.pageNum);
+        this.placeStoreService.searchPlaces(this.query, this.pageNum);
     }
     
     private getDataFromService(): void {
-        // this.characters$ = this.homeStoreService.selectCharacter();
+        this.places$ = this.placeStoreService.selectPlaces();
     }
 
     ngOnDestroy(): void {

@@ -7,13 +7,15 @@ import { PlaceComponent } from './component/place.component';
 import { PlaceSingleComponent } from './component/place-list/component/place-single.component';
 import { PlaceListContainerComponent } from './component/place-list/container/place-list.container.component';
 import { SharedModule } from '@app/shared/components/Shared.module';
+import { PlacesDetailComponent } from './component/place-detail/place-detail.component';
 
 @NgModule({
   declarations: [
     PlaceContainerComponent,
     PlaceComponent,
     PlaceSingleComponent,
-    PlaceListContainerComponent
+    PlaceListContainerComponent,
+    PlacesDetailComponent
   ],
   imports: [
     CommonModule,

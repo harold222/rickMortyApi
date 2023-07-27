@@ -1,8 +1,10 @@
-﻿<!-- <ng-container *ngIf="characters">
-    <div class="row">
-      
-      <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="characters.length <= 0">
-        <p>Sin resultados</p>
-      </div>
+﻿<ng-container *ngIf="places">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let place of places">
+       <app-place-detail [place]="place" ></app-place-detail>
     </div>
-  </ng-container> -->
+    <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="places.length <= 0">
+      <p>Sin resultados</p>
+    </div>
+  </div>
+</ng-container>

@@ -1,4 +1,5 @@
 ﻿import { Component, Input } from '@angular/core';
+import { PlaceInfoInterface } from '@app/shared/interfaces/places/PlaceInfo.interface';
 
 @Component({
   selector: 'app-place-single',
@@ -7,7 +8,7 @@
 })
 export class PlaceSingleComponent {
 
-//   @Input() characters: Character[] | null = [];
+  @Input() places: PlaceInfoInterface[] | null = [];
 
   constructor(
   ) {

@@ -1,1 +1,7 @@
-﻿
+﻿<app-place-single [places]="places$ | async" ></app-place-single>
+
+<app-pagination
+    [currentPage]="pageNum"
+    [totalPages]="totalPages$ | async"
+>
+</app-pagination>
