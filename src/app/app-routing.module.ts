@@ -16,6 +16,16 @@ const routes: Routes = [
     path: 'detalle-personaje/:id',
     loadChildren: () => import('./components/pages/characters/character-details/character-details.module')
       .then(m => m.CharacterDetailsModule)
+  },
+  {
+    path: 'lugares',
+    loadChildren: () => import('./components/pages/place/place.module')
+      .then(m => m.PlaceModule)
+  },
+  {
+    path: 'episodios',
+    loadChildren: () => import('./components/pages/episode/episode.module')
+      .then(m => m.EpisodeModule)
   }
 ];
 

@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './mainStore/app.reducer';
 import { HomeEffects } from './components/pages/home/store/home.effect';
+import { PlaceEffects } from './components/pages/place/store/place.effect';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomeEffects } from './components/pages/home/store/home.effect';
     CommonModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([
-      HomeEffects
+      HomeEffects,
+      PlaceEffects
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],

@@ -1,14 +1,21 @@
-<header class="p-3 text-bg-dark">
-    <div class="container m-0">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center">
-          <a routerLink="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-            RickMorty-App
-          </a>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
-          <app-form-search></app-form-search>        
-        </div>
-      </div>
+<nav class="navbar navbar-expand-lg text-bg-dark">
+  <div class="container mt-2">
+    <a class="navbar-brand text-white " href="#">RickMorty-App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a routerLink="/lugares" class="nav-link text-white" href="#">Lugares</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/episodios" class="nav-link text-white" aria-disabled="true">Episodios</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <app-form-search></app-form-search>  
+      </form>
     </div>
-  </header>
+  </div>
+</nav>

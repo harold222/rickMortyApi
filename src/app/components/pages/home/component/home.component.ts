@@ -8,4 +8,7 @@ export class HomeComponent {
 
   @Input() loading: boolean | null = false;
 
+  constructor(){
+  }
+
 }
