@@ -1,1 +1,6 @@
 ﻿<app-character-list [characters]="characters$ | async" ></app-character-list>
+<app-pagination
+    [currentPage]="pageNum"
+    [totalPages]="totalPages$ | async"
+>
+</app-pagination>

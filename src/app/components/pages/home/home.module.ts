@@ -7,12 +7,11 @@ import { CharactersModule } from '../characters/characters.module';
 import { HomeContainerComponent } from './container/home.component';
 import { LoadingComponent } from '@app/shared/components/loading/loading.component';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
     HomeContainerComponent,
-    LoadingComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

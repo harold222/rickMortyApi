@@ -1,0 +1,17 @@
+﻿<nav>
+  <ul class="pagination justify-content-center">
+    <li class="{{ allowPrevious ? 'page-item' : 'disabled' }}">
+      <button (click)="changePage(currentP - 3, true)" class="page-link" href="#">Anterior</button>
+    </li>
+
+    <div *ngFor="let page of maxPage">
+      <li class="{{ page == currentP ? 'disabled' : 'page-item' }}">
+        <button (click)="changePage(page)" class="page-link" href="#">{{page}}</button>
+      </li>
+    </div>
+
+    <li class="{{ allowNext ? 'page-item' : 'disabled' }}">
+      <button (click)="changePage(maxPage[maxPage.length - 1] + 1, true)" class="page-link" href="#">Siguiente</button>
+    </li>
+  </ul>
+</nav>

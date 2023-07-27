@@ -10,9 +10,10 @@ import { Observable, filter, take } from 'rxjs';
   })
 export class CharacterListContainerComponent {
 
-    private pageNum = 1;
+    public pageNum = 1;
     private query: string = "";
     public characters$: Observable<Character[]> = new Observable<Character[]>();
+    public totalPages$: Observable<number> = new Observable<number>();
 
     constructor(
         private homeStoreService: HomeStoreService,
@@ -24,6 +25,7 @@ export class CharacterListContainerComponent {
 
     ngOnInit(): void {
         this.getDataFromService();
+        this.totalPages$ = this.homeStoreService.selectTotalPages();
     }
 
     private onUrlChanged(): void {
@@ -38,8 +40,16 @@ export class CharacterListContainerComponent {
         this.route.queryParams.pipe(
           take(1)
         ).subscribe((params: any) => {
-            this.pageNum = 1;
-            this.query = params['q'];
+            if (params['page'])  {
+                try {
+                    this.pageNum = parseInt(params['page']);
+                } catch (error) {
+                    this.pageNum = 1;
+                }
+            } else
+                this.pageNum = 1;
+
+            this.query = params['q'] || "";
             this.searchData();
         });
       }
