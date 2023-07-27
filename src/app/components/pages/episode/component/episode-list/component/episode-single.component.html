@@ -1,0 +1,10 @@
+﻿<ng-container *ngIf="episodes">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let episode of episodes">
+         <app-episode-detail [episode]="episode" ></app-episode-detail>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="episodes.length <= 0">
+        <p>Sin resultados</p>
+      </div>
+    </div>
+</ng-container>

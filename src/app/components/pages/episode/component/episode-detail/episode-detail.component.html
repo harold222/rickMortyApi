@@ -1,0 +1,10 @@
+﻿<div class="card">
+    <div class="card-inner p-2">
+      <div class="header">
+        <a [routerLink]="['/detalle-personaje', episode?.id]">
+          <h2>{{ episode?.name | slice: 0:15}}</h2>
+        </a>
+        <small class="text-muted">Episodio: {{ episode?.episode }}</small>
+      </div>
+    </div>
+  </div>

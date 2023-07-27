@@ -4,7 +4,7 @@ import { IEpisodeState } from "../store";
 import { Observable } from "rxjs";
 import * as selectors from '../store/episode.selector';
 import { TrackHttpError } from "@app/shared/models/TrackHttpError";
-import {  setPages, setLoading } from '../store/episode.action';
+import {  setPages, setLoading, getEpisodes } from '../store/episode.action';
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable({
@@ -14,12 +14,18 @@ export class EpisodeStoreService {
 
     constructor(private store: Store<IEpisodeState>) { }
 
+    public searchEpisodes(query: string, page: number = 200): void {
+		this.store.dispatch(getEpisodes({ page, query }));
+	}
+
     public handleHttpError = (error: HttpErrorResponse): TrackHttpError =>
         ({
             errorNumber: error.status,
             message: error.statusText,
             friendlyMessage: 'Ha ocurrido un error'
         })
+
+    public selectEpisodes = (): Observable<any[]> => this.store.select(selectors.selectEpisodes);
 
     public selectError = (): Observable<TrackHttpError> => this.store.select(selectors.selectErrorHttp);
 

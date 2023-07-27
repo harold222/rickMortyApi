@@ -5,12 +5,18 @@ import { LoadingComponent } from '@app/shared/components/loading/loading.compone
 import { EpisodeRoutingModule } from './episode-routing.module';
 import { EpisodeContainerComponent } from './container/episode.container.component';
 import { EpisodeComponent } from './component/episode.component';
+import { EpisodeListContainerComponent } from './component/episode-list/container/episode-list.container.component';
+import { EpisodeSingleComponent } from './component/episode-list/component/episode-single.component';
+import { EpisodeDetailComponent } from './component/episode-detail/episode-detail.component';
 
 @NgModule({
   declarations: [
     EpisodeContainerComponent,
     EpisodeComponent,
-    LoadingComponent
+    LoadingComponent,
+    EpisodeListContainerComponent,
+    EpisodeSingleComponent,
+    EpisodeDetailComponent
   ],
   imports: [
     CommonModule,

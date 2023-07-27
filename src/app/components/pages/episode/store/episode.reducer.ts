@@ -2,8 +2,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as actions from './episode.action';
 import { TrackHttpError } from "@app/shared/models/TrackHttpError";
+import { EpisodeInfo } from "@app/shared/interfaces/episodes/EpisodeInfo.interface";
 
 export const initialEpisodeState: IEpisodeState = {
+    episodes: [],
     error: {
         errorNumber: 0,
         friendlyMessage: '',
@@ -15,6 +17,11 @@ export const initialEpisodeState: IEpisodeState = {
 
 export const shared = createReducer(
     initialEpisodeState,
+    on(actions.setEpisodes, (state: IEpisodeState, action: { episodes: EpisodeInfo[] }) => {
+        const newState: IEpisodeState = { ...state};
+        newState.episodes = action.episodes;
+        return newState;
+    }),
     on(actions.setHttpError, (state: IEpisodeState, action: { error: TrackHttpError }) => {
         const newState: IEpisodeState = { ...state};
         newState.error = action.error;

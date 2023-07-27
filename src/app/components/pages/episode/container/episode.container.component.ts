@@ -11,7 +11,7 @@ export class EpisodeContainerComponent {
   public loading$: Observable<boolean> = new Observable<boolean>();
 
   constructor(private episodeStoreService: EpisodeStoreService) {
-      this.loading$ = this.episodeStoreService.selectLoading();
+    this.loading$ = this.episodeStoreService.selectLoading();
   }
 
 }

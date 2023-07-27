@@ -5,6 +5,12 @@ export const selectEpisodeState = (state: any) => (
     state.Episode
 );
 
+
+export const selectEpisodes = createSelector(
+    selectEpisodeState,
+    (homeState: IEpisodeState) => homeState.episodes);
+
+
 export const selectErrorHttp = createSelector(
     selectEpisodeState,
     (homeState: IEpisodeState) => homeState.error);

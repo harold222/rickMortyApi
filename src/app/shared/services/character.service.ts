@@ -15,13 +15,13 @@ export class CharacterService {
   constructor(private http: HttpClient) { }
 
   searchCharacters(query = '', page = 200): Observable<SearchCharacter> {
-    const filter = `${environment.baseUrlAPI}/?name=${query}&page=${page}`;
+    const filter = `${environment.baseUrlAPI}/character?name=${query}&page=${page}`;
     return this.http.get<SearchCharacter>(filter);
   }
 
   getDetails(id: number): Observable<Character | TrackHttpError> {
     return this.http.get<Character>(
-      `${environment.baseUrlAPI}/${id}`
+      `${environment.baseUrlAPI}/character/${id}`
       )
       .pipe(
         catchError(
