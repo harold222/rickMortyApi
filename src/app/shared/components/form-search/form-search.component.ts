@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-form-search',
@@ -9,8 +10,19 @@ import { Router } from '@angular/router';
 export class FormSearchComponent {
 
   public existSearch = false;
+  private searchSubject = new Subject<string>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.searchSubject.pipe(
+      debounceTime(700)
+    ).subscribe((value: string) => {
+      this.router.navigate([`/lista-personajes`], {
+        queryParams: {
+          q: value
+        }
+      });
+    });
+  }
 
   public onSearch(event: any) {
     let generateSearch = false;
@@ -23,13 +35,8 @@ export class FormSearchComponent {
         generateSearch = true;
     }
 
-    if (generateSearch) {
-      this.router.navigate([`/lista-personajes`], {
-        queryParams: {
-          q: event.target.value
-        }
-      });
-    }
+    if (generateSearch)
+      this.searchSubject.next(event.target.value);
   }
 
 }

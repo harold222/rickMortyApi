@@ -1,5 +1,6 @@
 ﻿import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
     selector: 'app-pagination',
@@ -30,16 +31,24 @@ export class PaginationComponent {
     private totalP: number = 0;
     private reloadNumbers: boolean = false;
 
-    constructor(private router: Router) {
-
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute
+    ) {
     }
 
     public changePage(page: number, reload: boolean = false) {
         this.reloadNumbers = reload;
-        this.router.navigate([`/`], {
-            queryParams: {
-              page: page > 0 ? page : 1
-            }
+
+        this.route.queryParams.pipe(
+            take(1)
+        ).subscribe((params: any) => {
+            this.router.navigate([`/lista-personajes`], {
+                queryParams: {
+                    page: page > 0 ? page : 1,
+                    q: params['q'] || ""
+                }
+            });
         });
     }
 

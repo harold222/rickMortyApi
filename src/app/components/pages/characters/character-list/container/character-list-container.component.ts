@@ -2,7 +2,7 @@
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { HomeStoreService } from "@app/components/pages/home/service/home.store.service";
 import { Character } from "@app/shared/interfaces/characters/character.interface";
-import { Observable, filter, take } from 'rxjs';
+import { Observable, Subject, filter, take, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-character-list-container',
@@ -14,6 +14,7 @@ export class CharacterListContainerComponent {
     private query: string = "";
     public characters$: Observable<Character[]> = new Observable<Character[]>();
     public totalPages$: Observable<number> = new Observable<number>();
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         private homeStoreService: HomeStoreService,
@@ -31,6 +32,7 @@ export class CharacterListContainerComponent {
     private onUrlChanged(): void {
         this.router.events
         .pipe(
+            takeUntil(this.unsubscribe$),
             filter((event) => event instanceof NavigationEnd)
         )
         .subscribe(() => this.getCharactersByQuery());
@@ -60,5 +62,10 @@ export class CharacterListContainerComponent {
     
     private getDataFromService(): void {
         this.characters$ = this.homeStoreService.selectCharacter();
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 }
