@@ -23,6 +23,11 @@ const routes: Routes = [
       .then(m => m.PlaceModule)
   },
   {
+    path: 'detalle-lugar/:id',
+    loadChildren: () => import('./components/pages/place-info/place-info.module')
+      .then(m => m.PlaceInfoModule)
+  },
+  {
     path: 'episodios',
     loadChildren: () => import('./components/pages/episode/episode.module')
       .then(m => m.EpisodeModule)
