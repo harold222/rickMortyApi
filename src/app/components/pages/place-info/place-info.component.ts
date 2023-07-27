@@ -1,8 +1,7 @@
 ﻿import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TrackHttpError } from '@app/shared/models/TrackHttpError';
 import { first, take } from 'rxjs';
-import { Location } from '@angular/common';
 import { PlaceInfoInterface } from '../../../shared/interfaces/places/PlaceInfo.interface';
 import { PlaceService } from '@app/shared/services/place.service';
 
@@ -18,8 +17,8 @@ export class PlaceInfoComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private placeService: PlaceService,
-    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class PlaceInfoComponent {
     });
   }
 
-  onGoBack():void{
-    this.location.back();
+  onGoBack():void {
+    this.router.navigate(['/lugares']);
   }
 }

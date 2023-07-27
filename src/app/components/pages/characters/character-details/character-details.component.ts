@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Character } from '@app/shared/interfaces/characters/character.interface';
 import { TrackHttpError } from '@app/shared/models/TrackHttpError';
 import { CharacterService } from '@app/shared/services/character.service';
-import { Observable, first, take } from 'rxjs';
-import { Location } from '@angular/common';
+import { first, take } from 'rxjs';
 
 @Component({
   selector: 'app-character-details',
@@ -19,7 +18,7 @@ export class CharacterDetailsComponent {
   constructor(
     private route: ActivatedRoute, 
     private characterSvc: CharacterService,
-    private location:Location
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +39,6 @@ export class CharacterDetailsComponent {
   }
 
   onGoBack():void{
-    this.location.back();
+    this.router.navigate(['/']);
   }
 }

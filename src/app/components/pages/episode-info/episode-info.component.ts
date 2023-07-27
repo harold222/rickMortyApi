@@ -1,12 +1,9 @@
 ﻿import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Character } from '@app/shared/interfaces/characters/character.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EpisodeInfo } from '@app/shared/interfaces/episodes/EpisodeInfo.interface';
 import { TrackHttpError } from '@app/shared/models/TrackHttpError';
-import { CharacterService } from '@app/shared/services/character.service';
 import { first, take } from 'rxjs';
 import { EpisodeService } from '../../../shared/services/episode.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-episode-info',
@@ -21,7 +18,7 @@ export class EpisodeInfoComponent {
   constructor(
     private route: ActivatedRoute,
     private episodeService: EpisodeService,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +40,6 @@ export class EpisodeInfoComponent {
   }
 
   onGoBack():void{
-    this.location.back();
+    this.router.navigate(['/episodios']);
   }
 }
