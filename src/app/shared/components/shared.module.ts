@@ -5,6 +5,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { HeaderComponent } from './header/header.component';
 import { FormSearchComponent } from './form-search/form-search.component';
 import { RouterModule } from '@angular/router';
+import { FormErrorComponent } from './form-error/form-error.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
     LoadingComponent,
     HeaderComponent,
     FormSearchComponent,
+    FormErrorComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { RouterModule } from '@angular/router';
     PaginationComponent,
     LoadingComponent,
     HeaderComponent,
-    FormSearchComponent
+    FormSearchComponent,
+    FormErrorComponent
   ]
 })
 export class SharedModule { }
