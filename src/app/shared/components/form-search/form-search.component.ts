@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, debounceTime } from 'rxjs';
@@ -12,11 +13,15 @@ export class FormSearchComponent {
   public existSearch = false;
   private searchSubject = new Subject<string>();
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private loation: Location
+  ) {
     this.searchSubject.pipe(
       debounceTime(700)
     ).subscribe((value: string) => {
-      this.router.navigate([`/lista-personajes`], {
+      const path = this.loation.path().split('?');
+      this.router.navigate([path[0]], {
         queryParams: {
           q: value
         }
