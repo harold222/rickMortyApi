@@ -31,7 +31,6 @@ export class CharacterDetailsComponent {
           first()
         )
         .subscribe(resp => {
-          
           if (resp instanceof TrackHttpError)
             this.error = resp;
           else

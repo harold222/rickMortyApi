@@ -1,13 +1,30 @@
-<div class="row justify-content-center mt-3">
-    <div class="col-xs-12 col-sm-6 col-md-6 justify-content-center">
-      <div *ngIf="character">
-        <app-character [character]="character"></app-character>
-      </div>
+<button (click)="onGoBack()" class="btn btn-primary btn-lg">
+  Regresar
+</button>
+<div class="row justify-content-center mt-2 mb-3">
+    <div class="col-12 justify-content-center">
+      <ng-container *ngIf="character">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <img
+              [src]="character.image"
+              [alt]="character.name"
+              class="card-img-top"
+            />
+          </div>
+          <div class="col-12 col-md-6 character-detail-content">
+            <h2>{{ character.name | slice: 0:15}}</h2>
+            <p><strong>Estado:</strong> {{ character.status }}</p>
+            <p><strong>Especie:</strong> {{ character.species }}</p>
+            <p><strong>Genero:</strong> {{ character.gender }}</p>
+            <p><strong>Creado:</strong> {{ character.created }}</p>
+            <p><strong>Origen:</strong> {{ character.origin.name }}</p>
+            <p><strong>Lugar: </strong> {{ character.location.name }}</p>
+          </div>
+        </div>
+      </ng-container>
       <ng-container *ngIf="error">
         <span>{{ error.friendlyMessage }}</span>
       </ng-container>
     </div>
 </div>
-<button (click)="onGoBack()" class="btn btn-primary btn-lg mt-3">
-  Back
-</button>

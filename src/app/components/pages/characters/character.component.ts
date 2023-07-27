@@ -5,6 +5,7 @@ import { Character } from '@app/shared/interfaces/character.interface';
     selector:'app-character',
     template:`
     <div class="card">
+      
       <div class="image">
           <a [routerLink]="['/detalle-personaje', character?.id]">
             <img
@@ -17,10 +18,9 @@ import { Character } from '@app/shared/interfaces/character.interface';
       <div class="card-inner p-2">
         <div class="header">
           <a [routerLink]="['/detalle-personaje', character?.id]">
-            <h2> {{ character?.name | slice: 0:15}}</h2>
+            <h2>{{ character?.name | slice: 0:15}}</h2>
           </a>
-          <h4 class="text-muted">{{ character?.gender }}</h4>
-          <small class="text-muted">{{ character?.created | date }}</small>
+          <small class="text-muted">Estado: {{ character?.status }}</small>
         </div>
       </div>
     </div>`,
