@@ -5,18 +5,18 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './component/home.component';
 import { CharactersModule } from '../characters/characters.module';
 import { HomeContainerComponent } from './container/home.component';
-import { LoadingComponent } from '@app/shared/components/loading/loading.component';
+import { SharedModule } from '@app/shared/components/Shared.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
     HomeContainerComponent,
-    LoadingComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    CharactersModule
+    CharactersModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

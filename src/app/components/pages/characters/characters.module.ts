@@ -5,19 +5,19 @@ import { CharacterListComponent } from './character-list/component/character-lis
 import { RouterModule } from '@angular/router';
 import { CharacterComponent } from './character.component';
 import { CharacterListContainerComponent } from './character-list/container/character-list-container.component';
-import { PaginationComponent } from '@app/shared/components/pagination/pagination.component';
+import { SharedModule } from '@app/shared/components/Shared.module';
 
 @NgModule({
   declarations: [
     CharacterDetailsComponent,
     CharacterListComponent,
     CharacterListContainerComponent,
-    CharacterComponent,
-    PaginationComponent
+    CharacterComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [
     CharacterDetailsComponent,

@@ -26,7 +26,17 @@ const routes: Routes = [
     path: 'episodios',
     loadChildren: () => import('./components/pages/episode/episode.module')
       .then(m => m.EpisodeModule)
-  }
+  },
+  {
+    path: 'episodios/:id',
+    loadChildren: () => import('./components/pages/episode/episode.module')
+      .then(m => m.EpisodeModule)
+  },
+  {
+    path: 'detalle-episodio/:id',
+    loadChildren: () => import('./components/pages/episode-info/episode-info.module')
+      .then(m => m.EpisodeInfoModule)
+  },
 ];
 
 @NgModule({

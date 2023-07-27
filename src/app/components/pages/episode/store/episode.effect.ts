@@ -17,6 +17,7 @@ export class EpisodeEffects {
             this.episodeService.searchEpisodes(action.query, action.page).pipe(
                 map((response: SearchEpisodes) =>
                 {
+                    this.episodeStoreService.setTotalPages(response.info.pages);
                     return setEpisodes({ episodes: response.results })
                 }),
                 catchError((error: HttpErrorResponse) => {

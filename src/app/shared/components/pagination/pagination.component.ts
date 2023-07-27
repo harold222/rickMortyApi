@@ -1,4 +1,5 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Location } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 
@@ -33,7 +34,8 @@ export class PaginationComponent {
 
     constructor(
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private loation: Location
     ) {
     }
 
@@ -43,7 +45,9 @@ export class PaginationComponent {
         this.route.queryParams.pipe(
             take(1)
         ).subscribe((params: any) => {
-            this.router.navigate([`/lista-personajes`], {
+            const path = this.loation.path().split('?');
+
+            this.router.navigate([path[0]], {
                 queryParams: {
                     page: page > 0 ? page : 1,
                     q: params['q'] || ""
