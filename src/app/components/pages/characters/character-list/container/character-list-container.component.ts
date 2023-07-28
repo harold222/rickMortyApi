@@ -1,8 +1,9 @@
 ﻿import { Component } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { HomeStoreService } from "@app/components/pages/home/service/home.store.service";
+import { FilterCharacter } from "@app/shared/interfaces/characters/FilterCharacter.interface";
 import { Character } from "@app/shared/interfaces/characters/character.interface";
-import { Observable, Subject, filter, take, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-character-list-container',
@@ -10,62 +11,19 @@ import { Observable, Subject, filter, take, takeUntil } from 'rxjs';
   })
 export class CharacterListContainerComponent {
 
-    public pageNum = 1;
-    private query: string = "";
     public characters$: Observable<Character[]> = new Observable<Character[]>();
     public totalPages$: Observable<number> = new Observable<number>();
-    private unsubscribe$ = new Subject<void>();
+    public selectFilter$: Observable<FilterCharacter> = new Observable<FilterCharacter>();
+    public router$: Observable<any> = new Observable<any>();
 
     constructor(
-        private homeStoreService: HomeStoreService,
-        private router: Router,
-        private route: ActivatedRoute,
+        private homeStoreService: HomeStoreService
     ) {
-        this.onUrlChanged();
     }
 
     ngOnInit(): void {
-        this.getDataFromService();
-        this.totalPages$ = this.homeStoreService.selectTotalPages();
-    }
-
-    private onUrlChanged(): void {
-        this.router.events
-        .pipe(
-            takeUntil(this.unsubscribe$),
-            filter((event) => event instanceof NavigationEnd)
-        )
-        .subscribe(() => this.getCharactersByQuery());
-    }
-
-    private getCharactersByQuery(): void {
-        this.route.queryParams.pipe(
-          take(1)
-        ).subscribe((params: any) => {
-            if (params['page'])  {
-                try {
-                    this.pageNum = parseInt(params['page']);
-                } catch (error) {
-                    this.pageNum = 1;
-                }
-            } else
-                this.pageNum = 1;
-
-            this.query = params['q'] || "";
-            this.searchData();
-        });
-      }
-
-    private searchData(): void {
-        this.homeStoreService.searchCharacters(this.query, this.pageNum);
-    }
-    
-    private getDataFromService(): void {
         this.characters$ = this.homeStoreService.selectCharacter();
-    }
-
-    ngOnDestroy(): void {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
+        this.totalPages$ = this.homeStoreService.selectTotalPages();
+        this.selectFilter$ = this.homeStoreService.selectFilter();
     }
 }

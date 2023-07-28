@@ -1,7 +1,7 @@
 ﻿import { Location } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs';
+import { Subject, take } from 'rxjs';
 
 @Component({
     selector: 'app-pagination',
@@ -25,6 +25,8 @@ export class PaginationComponent {
         }
     }
 
+    @Output() pageChange: Subject<number> = new Subject<number>();
+
     public allowPrevious: boolean = false;
     public allowNext: boolean = false;
     public maxPage: number[]  = [];
@@ -41,19 +43,7 @@ export class PaginationComponent {
 
     public changePage(page: number, reload: boolean = false) {
         this.reloadNumbers = reload;
-
-        this.route.queryParams.pipe(
-            take(1)
-        ).subscribe((params: any) => {
-            const path = this.loation.path().split('?');
-
-            this.router.navigate([path[0]], {
-                queryParams: {
-                    page: page > 0 ? page : 1,
-                    q: params['q'] || ""
-                }
-            });
-        });
+        this.pageChange.next(page);
     }
 
     private UpatePagination() {

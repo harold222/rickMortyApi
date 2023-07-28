@@ -1,0 +1,102 @@
+﻿<div class="container filter mt-0 mb-3">
+    <div class="row">
+        <div class="col-11 text-center mb-2">
+            <h5 class="filter-title">Filtrar</h5>
+        </div>
+        <div class="col-1">
+            <button class="btn btn-danger btn-sm" (click)="onClear()">Limpiar</button>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3" role="search">
+                    <strong>Nombre:</strong>
+                    <app-form-search
+                        (name)="onNameChange($event)"
+                    >
+                    </app-form-search>  
+                </div>
+                <div class="col-3">
+                    <strong>Estado</strong>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="state" value="alive"
+                            id="state1" [(ngModel)]="stateOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="state1">
+                          Vivo
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="state" value="dead"
+                            id="state2" [(ngModel)]="stateOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="state2">
+                          Muerto
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="state" value="unknown"
+                            id="state3" [(ngModel)]="stateOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="state3">
+                          Desconocido
+                        </label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <strong>Genero</strong>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="gender" value="female"
+                            id="gender1" [(ngModel)]="genderOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="gender1">
+                          Mujer
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="gender" value="male"
+                            id="gender2" [(ngModel)]="genderOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="gender2">
+                          Hombre
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="gender" value="genderless"
+                            id="gender3" [(ngModel)]="genderOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="gender3">
+                          Sin genero
+                        </label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <strong>Specie</strong>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="specie" value="Human"
+                            id="specie1" [(ngModel)]="specieOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="specie1">
+                          Humano
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="alien" value="Alien"
+                            id="specie2" [(ngModel)]="specieOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="specie2">
+                          Alien
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="specie" value="Humanoid"
+                            id="specie3" [(ngModel)]="specieOption" (ngModelChange)="onOptionChange()">
+                        <label class="form-check-label" for="specie3">
+                          Humanoide
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

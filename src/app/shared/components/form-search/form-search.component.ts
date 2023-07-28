@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, debounceTime } from 'rxjs';
 import { ViewChild, ElementRef } from '@angular/core';
+import { FilterCharacter } from '@app/shared/interfaces/characters/FilterCharacter.interface';
 
 @Component({
   selector: 'app-form-search',
@@ -14,7 +15,7 @@ export class FormSearchComponent {
   public existSearch = false;
   private searchSubject = new Subject<string>();
   @ViewChild('inputSearch') inputSearch: ElementRef = new ElementRef(null);
-
+  @Output() name: Subject<string> = new Subject<string>();
 
   constructor(
     private router: Router,
@@ -23,12 +24,7 @@ export class FormSearchComponent {
     this.searchSubject.pipe(
       debounceTime(700)
     ).subscribe((value: string) => {
-      const path = this.loation.path().split('?');
-      this.router.navigate([path[0]], {
-        queryParams: {
-          q: value
-        }
-      });
+      this.name.next(value);
     });
   }
 

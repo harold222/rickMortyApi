@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { TrackHttpError } from '../models/TrackHttpError';
 import { SearchCharacter } from '../interfaces/characters/SearchCharacter.interface';
+import { FilterCharacter } from '../interfaces/characters/FilterCharacter.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,6 @@ import { SearchCharacter } from '../interfaces/characters/SearchCharacter.interf
 export class CharacterService {
 
   constructor(private http: HttpClient) { }
-
-  searchCharacters(query = '', page = 200): Observable<SearchCharacter> {
-    const filter = `${environment.baseUrlAPI}/character?name=${query}&page=${page}`;
-    return this.http.get<SearchCharacter>(filter);
-  }
 
   getDetails(id: number): Observable<Character | TrackHttpError> {
     return this.http.get<Character>(
@@ -28,6 +24,18 @@ export class CharacterService {
           (err) => this.handleHttpError(err)
         )
       );
+  }
+
+  filterCharacters(request: FilterCharacter): Observable<SearchCharacter> {
+    const filter =
+      `${environment.baseUrlAPI}/character?status=${request.status}
+      &species=${request.specie}
+      &type=${request.types}
+      &gender=${request.gender}
+      &name=${request.name}
+      &page=${request.page}
+    `;
+    return this.http.get<SearchCharacter>(filter);
   }
 
   private handleHttpError(error: HttpErrorResponse): Observable<TrackHttpError>{

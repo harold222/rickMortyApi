@@ -3,6 +3,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as actions from './home.action';
 import { Character } from "@app/shared/interfaces/characters/character.interface";
 import { TrackHttpError } from "@app/shared/models/TrackHttpError";
+import { FilterCharacter } from "@app/shared/interfaces/characters/FilterCharacter.interface";
 
 export const initialHomeState: IHomeState = {
     characters: [],
@@ -13,6 +14,14 @@ export const initialHomeState: IHomeState = {
     },
     totalPages: 0,
     loading: false,
+    currentFilter: {
+        gender: '',
+        name: '',
+        page: 1,
+        specie: '',
+        status: '',
+        types: ''
+    }
 };
 
 export const shared = createReducer(
@@ -35,6 +44,11 @@ export const shared = createReducer(
     on(actions.setLoading, (state: IHomeState, action: { loading: boolean }) => {
         const newState: IHomeState = { ...state};
         newState.loading = action.loading;
+        return newState;
+    }),
+    on(actions.setCurrentFilter, (state: IHomeState, action: { request: FilterCharacter }) => {
+        const newState: IHomeState = { ...state};
+        newState.currentFilter = action.request;
         return newState;
     }),
 );

@@ -20,3 +20,7 @@ export const selectTotalPages = createSelector(
 export const selectLoading = createSelector(
     selectHomeState,
     (homeState: IHomeState) => homeState.loading);
+
+export const selectFilter = createSelector(
+    selectHomeState,
+    (homeState: IHomeState) => homeState.currentFilter);
